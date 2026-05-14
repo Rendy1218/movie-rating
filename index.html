@@ -653,6 +653,9 @@
         saveToLocal();
         updateTableDisplay();
         
+        // 👇 新增：发送当前这条评分到 Google Sheets
+        sendSingleRatingToGoogleSheets(record);
+        
         if (currentIndex + 1 < TOTAL_CLIPS) {
             currentIndex++;
             loadClip(currentIndex);
@@ -718,6 +721,35 @@
         }).catch(err => {
             console.error("Failed to send data:", err);
             showToastMessage("⚠️ Cloud save failed, but local data is safe / 云端保存失败，本地数据安全");
+        });
+    }
+
+    // 发送单条评分到 Google Sheets（每次只发当前刚完成的这一条）
+    function sendSingleRatingToGoogleSheets(currentRating) {
+        if (!currentRating) return;
+        
+        console.log("发送单条评分:", currentRating);
+        
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw4ogd_BlXmRXs77hNoFI_f49lFPq510y2kF_aNkRZU2IeU7jO9o-0Gmnx6Yww26uIc/exec";
+        
+        const payload = {
+            participantId: currentSubjectId,
+            type: "single",
+            rating: currentRating,
+            timestamp: new Date().toISOString()
+        };
+        
+        fetch(WEB_APP_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        }).then(() => {
+            console.log("✅ 单条评分已发送到 Google Sheets");
+        }).catch(err => {
+            console.error("❌ 发送失败:", err);
         });
     }
 
