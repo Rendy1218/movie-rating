@@ -148,16 +148,14 @@
             background: #1e243e;
             border: none;
             color: #e2eaff;
-            padding: 10px 0;
+            padding: 8px 0;
             border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
             text-align: center;
-            min-width: 52px;
-            width: 52px;           /* 固定宽度 */
-            flex-shrink: 0;        /* 不允许收缩 */
+            font-size: 14px;       /* 字体稍微缩小以适应窄按钮 */
             transition: all 0.15s;
-            font-size: 16px;
+            min-width: 0; 
         }
         
         /* 唤醒度和置信度按钮（各5个） */
@@ -184,13 +182,11 @@
         
         /* 按钮容器：让 Valence 按钮支持横向滚动 */
         .btn-group {
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            gap: 8px;
+            display: grid;
+            grid-template-columns: repeat(11, 1fr);  /* 强制 11 列，每列等宽 */
+            gap: 6px;
             margin: 12px 0 6px;
-            padding-bottom: 8px;
-            -webkit-overflow-scrolling: touch;
+            overflow-x: visible;   /* 确保没有滚动条 */
         }
 
         .label-row {
