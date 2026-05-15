@@ -135,12 +135,16 @@
 
         .btn-group {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;      /* 强制不换行 */
+            overflow-x: auto;       /* 超出时允许横向滚动 */
             gap: 8px;
             margin: 12px 0 6px;
+            padding-bottom: 8px;    /* 给滚动条留点空间 */
+            -webkit-overflow-scrolling: touch;  /* 移动端平滑滚动 */
         }
 
-        .valence-btn, .score-btn {
+        /* Valence 按钮（-5 到 +5，共11个） */
+        .valence-btn {
             background: #1e243e;
             border: none;
             color: #e2eaff;
@@ -150,15 +154,43 @@
             cursor: pointer;
             text-align: center;
             min-width: 52px;
-            flex: 1 0 52px;
+            width: 52px;           /* 固定宽度 */
+            flex-shrink: 0;        /* 不允许收缩 */
             transition: all 0.15s;
             font-size: 16px;
         }
-
+        
+        /* 唤醒度和置信度按钮（各5个） */
+        .score-btn {
+            background: #1e243e;
+            border: none;
+            color: #e2eaff;
+            padding: 10px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            min-width: 52px;
+            flex: 1 0 52px;        /* 弹性拉伸，适应空间 */
+            transition: all 0.15s;
+            font-size: 16px;
+        }
+        
         .valence-btn.active, .score-btn.active {
             background: #6c5ce7;
             box-shadow: 0 4px 12px rgba(108,92,231,0.4);
             transform: scale(1.02);
+        }
+        
+        /* 按钮容器：让 Valence 按钮支持横向滚动 */
+        .btn-group {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 8px;
+            margin: 12px 0 6px;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
         }
 
         .label-row {
