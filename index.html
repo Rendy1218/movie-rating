@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Movie Emotion Rating Task | Bilingual · Auto-save · Auto-export</title>
+    <title>Movie Emotion Rating Task</title>
     <style>
         * {
             margin: 0;
@@ -17,6 +17,7 @@
             padding: 20px;
             color: #f0f3fa;
             min-height: 100vh;
+            font-size: 16px;
         }
 
         .container {
@@ -75,7 +76,7 @@
             padding: 8px 24px 20px 24px;
             display: flex;
             justify-content: space-between;
-            font-size: 14px;
+            font-size: 16px;
             color: #b9c3e6;
             flex-wrap: wrap;
             gap: 10px;
@@ -85,7 +86,7 @@
             background: #2d2f42;
             padding: 4px 12px;
             border-radius: 40px;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .rating-panel {
@@ -107,7 +108,7 @@
         }
 
         .dimension-title {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 700;
             margin-bottom: 4px;
             display: flex;
@@ -117,19 +118,19 @@
         }
 
         .dimension-sub {
-            font-size: 11px;
+            font-size: 14px;
             color: #a29bfe;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
         }
 
         .dimension-desc {
-            font-size: 11px;
+            font-size: 14px;
             color: #9ba4cf;
             margin-bottom: 12px;
             padding-bottom: 8px;
             border-bottom: 1px solid rgba(255,255,255,0.08);
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .btn-group {
@@ -143,15 +144,15 @@
             background: #1e243e;
             border: none;
             color: #e2eaff;
-            padding: 8px 0;
+            padding: 10px 0;
             border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
             text-align: center;
-            min-width: 48px;
-            flex: 1 0 48px;
+            min-width: 52px;
+            flex: 1 0 52px;
             transition: all 0.15s;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .valence-btn.active, .score-btn.active {
@@ -163,7 +164,7 @@
         .label-row {
             display: flex;
             justify-content: space-between;
-            font-size: 10px;
+            font-size: 13px;
             color: #8f9ac2;
             margin-top: 6px;
             padding: 0 4px;
@@ -185,7 +186,7 @@
             cursor: pointer;
             color: white;
             transition: all 0.2s;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         button:hover:not(:disabled) {
@@ -226,7 +227,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 13px;
+            font-size: 15px;
         }
 
         th, td {
@@ -244,7 +245,7 @@
             background: #3b3f64;
             padding: 4px 12px;
             border-radius: 30px;
-            font-size: 11px;
+            font-size: 13px;
             cursor: pointer;
             border: none;
             color: white;
@@ -252,7 +253,7 @@
 
         footer {
             text-align: center;
-            font-size: 11px;
+            font-size: 13px;
             margin-top: 20px;
             color: #6a7093;
         }
@@ -302,7 +303,7 @@
             margin-bottom: 12px;
             line-height: 1.5;
             color: #cbd5ff;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .example-box {
@@ -311,6 +312,7 @@
             padding: 14px 18px;
             margin: 14px 0;
             border-left: 4px solid #6c5ce7;
+            font-size: 15px;
         }
 
         .example-title {
@@ -329,14 +331,14 @@
             font-weight: 500;
         }
 
-        .info-field input {
+        .info-field input, .info-field select {
             background: #1e243c;
             border: 1px solid #3d4270;
             padding: 12px 16px;
             border-radius: 40px;
             color: white;
             width: 100%;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .check-group {
@@ -345,12 +347,20 @@
             gap: 12px;
             align-items: center;
         }
+        
+        .check-group label {
+            font-size: 15px;
+        }
 
         .tutorial-step {
             margin: 18px 0;
             padding: 14px;
             background: #0a0e1a;
             border-radius: 20px;
+        }
+        
+        .tutorial-step p {
+            font-size: 15px;
         }
 
         .toast-msg {
@@ -397,52 +407,50 @@
 
         <div class="rating-panel">
             <div class="dimension-card">
-                <div class="dimension-title">😊 Emotional Valence / 情绪效价 <span style="font-size:12px;">Valence</span></div>
-                <div class="dimension-desc">🇬🇧 Overall, does the clip feel positive or negative?<br>🇨🇳 整体感受是积极愉悦还是消极难受？</div>
+                <div class="dimension-title">😊 Emotional Valence</div>
+                <div class="dimension-desc">Overall, does the clip feel positive or negative?</div>
                 <div class="btn-group" id="valenceButtons"></div>
-                <div class="label-row"><span>Very negative / 非常消极</span><span>Neutral / 中性</span><span>Very positive / 非常积极</span></div>
+                <div class="label-row"><span>Very negative</span><span>Neutral</span><span>Very positive</span></div>
             </div>
             <div class="dimension-card">
-                <div class="dimension-title">⚡ Emotional Arousal / 情绪唤醒度 <span style="font-size:12px;">Arousal</span></div>
-                <div class="dimension-desc">🇬🇧 How intense, tense or exciting is the clip?<br>🇨🇳 情绪强度、紧张感、激动程度</div>
+                <div class="dimension-title">⚡ Emotional Arousal</div>
+                <div class="dimension-desc">How intense, tense or exciting is the clip?</div>
                 <div class="btn-group" id="arousalButtons"></div>
-                <div class="label-row"><span>Calm / 平静</span><span>Mild / 轻度</span><span>Moderate / 中度</span><span>High / 强烈</span><span>Extreme / 极其强烈</span></div>
+                <div class="label-row"><span>Calm</span><span>Mild</span><span>Moderate</span><span>High</span><span>Extreme</span></div>
             </div>
             <div class="dimension-card">
-                <div class="dimension-title">🎯 Rating Confidence / 评分置信度 <span style="font-size:12px;">Confidence</span></div>
-                <div class="dimension-desc">🇬🇧 How certain are you about your ratings?<br>🇨🇳 您对自己评分的把握程度</div>
+                <div class="dimension-title">🎯 Rating Confidence</div>
+                <div class="dimension-desc">How certain are you about your ratings?</div>
                 <div class="btn-group" id="confidenceButtons"></div>
-                <div class="label-row"><span>Not confident / 没信心</span><span>Slightly / 稍微</span><span>Moderate / 中等</span><span>Confident / 有信心</span><span>Very confident / 非常有信心</span></div>
+                <div class="label-row"><span>Not confident</span><span>Slightly</span><span>Moderate</span><span>Confident</span><span>Very confident</span></div>
             </div>
             <div class="action-buttons">
-                <button id="resetBtn">⟳ Reset / 重置当前</button>
-                <button id="submitBtn" class="btn-primary">✓ Submit & Next / 提交 & 下一段</button>
+                <button id="resetBtn">⟳ Reset</button>
+                <button id="submitBtn" class="btn-primary">✓ Submit & Next</button>
             </div>
         </div>
     </div>
 
     <div class="table-section">
         <div class="table-header">
-            <span>📋 Rating Summary / 评分记录表</span>
-            <button id="exportBtn">⬇ Export CSV / 导出CSV</button>
+            <span>📋 Rating Summary</span>
+            <button id="exportBtn">⬇ Export CSV</button>
         </div>
         <div style="overflow-x: auto;">
             <table id="ratingsTable">
                 <thead>
-                    <tr><th>Clip / 片段</th><th>Valence / 效价</th><th>Arousal / 唤醒度</th><th>Confidence / 置信度</th><th>Action / 操作</th></tr>
+                    <tr><th>Clip</th><th>Valence</th><th>Arousal</th><th>Confidence</th><th>Action</th></tr>
                 </thead>
                 <tbody id="tableBody">
-                    <tr><td colspan="5" style="text-align:center;">Waiting to start... / 等待开始...</td></tr>
+                    <tr><td colspan="5" style="text-align:center;">Waiting to start...</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <footer>💾 Auto-saved in browser | Each participant has independent progress | Auto-export CSV on completion<br>💾 数据自动保存在浏览器中 | 每位被试独立进度 | 完成后自动导出CSV文件</footer>
+    <footer>💾 Auto-saved in browser | Each participant has independent progress | Auto-export CSV on completion</footer>
 </div>
 
 <script>
-    // ==================== CONFIGURATION ====================
-    // 修改这里：设置视频总数（根据你的实际视频数量）
     const TOTAL_CLIP_COUNT = 326;
     
     let CLIPS = [];
@@ -454,7 +462,6 @@
     let currentScores = { valence: null, arousal: null, confidence: null };
     let isCompleted = false;
     
-    // DOM elements
     const mainApp = document.getElementById('mainApp');
     const videoPlayer = document.getElementById('movieVideo');
     const clipNameDisplay = document.getElementById('clipNameDisplay');
@@ -465,12 +472,8 @@
     const exportBtn = document.getElementById('exportBtn');
     const tableBody = document.getElementById('tableBody');
 
-    // ==================== 加载视频列表 ====================
     function loadVideoList() {
-        // 根据你的视频命名规则：clip_001.mp4, clip_002.mp4, ..., clip_326.mp4
-        // 替换成你的 Bunny.net Pull Zone 域名
         const CDN_BASE_URL = "https://movie-frmi.b-cdn.net";
-        
         const clips = [];
         for (let i = 1; i <= TOTAL_CLIP_COUNT; i++) {
             const clipNumber = String(i).padStart(3, '0');
@@ -482,12 +485,11 @@
         }
         CLIPS = clips;
         TOTAL_CLIPS = CLIPS.length;
-        console.log(`成功加载 ${TOTAL_CLIPS} 个视频片段`);
+        console.log(`Loaded ${TOTAL_CLIPS} clips`);
         return Promise.resolve();
     }
 
-    // ==================== 存储与加载 ====================
-    function getStorageKey() { return `MovieRating_Bilingual_${currentSubjectId}`; }
+    function getStorageKey() { return `MovieRating_${currentSubjectId}`; }
     
     function saveToLocal() {
         if (!currentSubjectId) return;
@@ -509,7 +511,6 @@
         } catch(e) { return false; }
     }
 
-    // ==================== 按钮生成 ====================
     function buildButtons() {
         const valenceContainer = document.getElementById('valenceButtons');
         valenceContainer.innerHTML = '';
@@ -563,11 +564,10 @@
         });
     }
 
-    // ==================== 表格显示 ====================
     function updateTableDisplay() {
         if (!tableBody) return;
         if (!ratingsData.length) {
-            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No ratings yet / 暂无评分数据</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No ratings yet</td></tr>';
             return;
         }
         tableBody.innerHTML = '';
@@ -580,7 +580,7 @@
             row.insertCell(3).textContent = rating.confidence;
             const editCell = row.insertCell(4);
             const editBtn = document.createElement('button');
-            editBtn.textContent = '✏️ Edit / 编辑';
+            editBtn.textContent = '✏️ Edit';
             editBtn.className = 'edit-btn';
             const clipIndex = CLIPS.findIndex(c => c.id === rating.clipId);
             editBtn.onclick = () => { if (clipIndex !== -1) { currentIndex = clipIndex; loadClip(currentIndex); } };
@@ -590,31 +590,30 @@
             const row = tableBody.insertRow();
             const cell = row.insertCell(0);
             cell.colSpan = 5;
-            cell.textContent = `... and ${ratingsData.length - 20} more rated clips / 还有${ratingsData.length - 20}个已评分片段`;
+            cell.textContent = `... and ${ratingsData.length - 20} more rated clips`;
         }
     }
 
-    // ==================== 加载视频片段 ====================
     function loadClip(index) {
         if (index >= TOTAL_CLIPS) {
             if (!isCompleted) {
                 isCompleted = true;
                 autoExportOnCompletion();
-                alert('🎉 All clips completed! Data exported.\n🎉 所有片段已完成！数据已导出。');
+                alert('All clips completed! Data exported.');
                 submitBtn.disabled = true;
-                submitBtn.textContent = '✓ Completed / 已完成';
+                submitBtn.textContent = '✓ Completed';
             }
             return;
         }
         const clip = CLIPS[index];
         clipNameDisplay.textContent = `${clip.name} (${index+1}/${TOTAL_CLIPS})`;
-        progressDisplay.textContent = `Progress / 进度: ${index+1} / ${TOTAL_CLIPS}`;
+        progressDisplay.textContent = `Progress: ${index+1} / ${TOTAL_CLIPS}`;
         progressFill.style.width = `${((index+1)/TOTAL_CLIPS)*100}%`;
         
         videoPlayer.pause();
         videoPlayer.src = clip.videoUrl;
         videoPlayer.load();
-        videoPlayer.play().catch(e => console.log("Auto-play blocked / 自动播放被阻止"));
+        videoPlayer.play().catch(e => console.log("Auto-play blocked"));
         
         const existingRating = ratingsData.find(r => r.clipId === clip.id);
         if (existingRating) {
@@ -626,15 +625,14 @@
         updateTableDisplay();
     }
 
-    // ==================== 提交评分 ====================
     function submitRating() {
         if (isCompleted || currentIndex >= TOTAL_CLIPS) {
-            alert('All clips finished / 已完成所有评分');
+            alert('All clips finished');
             return;
         }
         const { valence, arousal, confidence } = currentScores;
         if (valence === null || arousal === null || confidence === null) {
-            alert('Please complete all three ratings / 请完成当前片段的所有评分');
+            alert('Please complete all three ratings');
             return;
         }
         
@@ -653,7 +651,6 @@
         saveToLocal();
         updateTableDisplay();
         
-        // 👇 新增：发送当前这条评分到 Google Sheets
         sendSingleRatingToGoogleSheets(record);
         
         if (currentIndex + 1 < TOTAL_CLIPS) {
@@ -665,15 +662,14 @@
             saveToLocal();
             updateTableDisplay();
             autoExportOnCompletion();
-            alert('✅ All clips completed! CSV exported.\n✅ 所有片段已评分完毕！CSV文件已自动保存。');
+            alert('All clips completed! CSV exported.');
             submitBtn.disabled = true;
-            submitBtn.textContent = '✓ Completed / 已完成';
+            submitBtn.textContent = '✓ Completed';
             isCompleted = true;
             progressFill.style.width = '100%';
         }
     }
 
-    // ==================== 自动导出 ====================
     function autoExportOnCompletion() {
         if (!ratingsData.length) return;
         
@@ -691,65 +687,65 @@
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
         
-        showToastMessage(`✅ Ratings completed! CSV saved / 评分完成！CSV已保存`);
+        showToastMessage('Ratings completed! CSV saved');
         sendDataToGoogleSheets(); 
     }
-    // 发送数据到 Google Sheets
+    
     function sendDataToGoogleSheets() {
         if (!ratingsData.length) return;
         
-        // 你的 Google Apps Script Web App URL
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxrByPKQp382QUOrp8F0K0F_nCnunSRkyH0FK8AfLYC7hKN48H0bOhO3ALIg5nWhOr7/exec";
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw_OD5SIB6i3nvelC0NJyWyueGaSBlg3ygaGvuHmkfO_CVp7bcKT9VIFKeZ6gNatVlT/exec";
         
         const payload = {
             participantId: currentSubjectId,
             totalClips: TOTAL_CLIPS,
             completed: isCompleted,
-            ratingsData: ratingsData
-        };
-        
-        fetch(WEB_APP_URL, {
-            method: "POST",
-            mode: "no-cors",  // 解决跨域问题
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        }).then(() => {
-            console.log("Data sent to Google Sheets successfully");
-            showToastMessage("📤 Data saved to cloud / 数据已保存到云端");
-        }).catch(err => {
-            console.error("Failed to send data:", err);
-            showToastMessage("⚠️ Cloud save failed, but local data is safe / 云端保存失败，本地数据安全");
-        });
-    }
-
-    // 发送单条评分到 Google Sheets（每次只发当前刚完成的这一条）
-    function sendSingleRatingToGoogleSheets(currentRating) {
-        if (!currentRating) return;
-        
-        console.log("发送单条评分:", currentRating);
-        
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw4ogd_BlXmRXs77hNoFI_f49lFPq510y2kF_aNkRZU2IeU7jO9o-0Gmnx6Yww26uIc/exec";
-        
-        const payload = {
-            participantId: currentSubjectId,
-            type: "single",
-            rating: currentRating,
-            timestamp: new Date().toISOString()
+            ratingsData: ratingsData,
+            age: window.participantInfo ? window.participantInfo.age : null,
+            gender: window.participantInfo ? window.participantInfo.gender : null,
+            nativeEnglish: window.participantInfo ? window.participantInfo.nativeEnglish : null,
+            seenMovie: window.participantInfo ? window.participantInfo.seenMovie : null
         };
         
         fetch(WEB_APP_URL, {
             method: "POST",
             mode: "no-cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         }).then(() => {
-            console.log("✅ 单条评分已发送到 Google Sheets");
+            console.log("Backup data sent to Google Sheets");
         }).catch(err => {
-            console.error("❌ 发送失败:", err);
+            console.error("Failed to send backup data:", err);
+        });
+    }
+
+    function sendSingleRatingToGoogleSheets(currentRating) {
+        if (!currentRating) return;
+        
+        console.log("Sending rating:", currentRating);
+        
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw_OD5SIB6i3nvelC0NJyWyueGaSBlg3ygaGvuHmkfO_CVp7bcKT9VIFKeZ6gNatVlT/exec";
+        
+        const payload = {
+            participantId: currentSubjectId,
+            type: "single",
+            rating: currentRating,
+            timestamp: new Date().toISOString(),
+            age: window.participantInfo ? window.participantInfo.age : null,
+            gender: window.participantInfo ? window.participantInfo.gender : null,
+            nativeEnglish: window.participantInfo ? window.participantInfo.nativeEnglish : null,
+            seenMovie: window.participantInfo ? window.participantInfo.seenMovie : null
+        };
+        
+        fetch(WEB_APP_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        }).then(() => {
+            console.log("Rating sent to Google Sheets");
+        }).catch(err => {
+            console.error("Failed to send:", err);
         });
     }
 
@@ -762,7 +758,7 @@
     }
 
     function manualExport() {
-        if (!ratingsData.length) { alert('No data / 暂无数据'); return; }
+        if (!ratingsData.length) { alert('No data'); return; }
         const headers = ['Clip_ID', 'Valence', 'Arousal', 'Confidence', 'Timestamp'];
         const rows = ratingsData.map(r => [r.clipId, r.valence, r.arousal, r.confidence, r.timestamp]);
         const csv = [headers, ...rows].map(row => row.join(',')).join('\n');
@@ -772,41 +768,92 @@
         link.download = `movie_ratings_${currentSubjectId}_${Date.now()}.csv`;
         link.click();
         URL.revokeObjectURL(link.href);
-        showToastMessage(`📥 Export successful / 导出成功`);
+        showToastMessage('Export successful');
     }
 
-    // ==================== 同意书与教程 ====================
     function showConsentAndTutorial() {
         const modal = document.createElement('div');
         modal.className = 'modal-overlay';
         modal.innerHTML = `
             <div class="modal-card">
-                <h2>📋 Informed Consent / 知情同意书</h2>
-                <p>🇬🇧 This study collects emotional ratings for movie clips. You will watch movie clips and rate Valence, Arousal, and Confidence.</p>
-                <p>🇨🇳 本研究收集您对电影片段的情绪评分。您将观看电影片段，并从三个方面进行评分。</p>
-                <p>✅ Voluntary, can withdraw anytime / 自愿参与，可随时退出<br>✅ Anonymous data for research only / 数据匿名，仅用于学术研究<br>✅ You must be 18+ / 需年满18周岁</p>
+                <h2>📋 Informed Consent</h2>
+                <p>This study collects emotional ratings for movie clips. You will watch movie clips and rate Valence, Arousal, and Confidence.</p>
+                <p>✅ Voluntary, can withdraw anytime<br>✅ Anonymous data for research only<br>✅ You must be 18+</p>
                 
                 <div class="info-field">
-                    <label>📝 Participant ID / 被试ID:</label>
-                    <input type="text" id="consentSubjectId" placeholder="e.g., S001, P002 / 例: S001, P002" maxlength="20">
+                    <label>📝 Participant ID:</label>
+                    <input type="text" id="consentSubjectId" placeholder="e.g., S001, P002" maxlength="20">
+                </div>
+                
+                <div class="info-field">
+                    <label>🎂 Age:</label>
+                    <input type="number" id="participantAge" placeholder="e.g., 25" min="18" max="100">
+                </div>
+                
+                <div class="info-field">
+                    <label>⚥ Gender:</label>
+                    <select id="participantGender">
+                        <option value="">-- Please select --</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Non-binary">Non-binary</option>
+                        <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                </div>
+                
+                <div class="info-field">
+                    <label>🗣️ Are you a native English speaker?</label>
+                    <select id="nativeEnglish">
+                        <option value="">-- Please select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                
+                <div class="info-field">
+                    <label>🎬 Have you ever watched the movie "Back to the Future" before?</label>
+                    <select id="seenMovie">
+                        <option value="">-- Please select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Not sure">Not sure</option>
+                    </select>
                 </div>
                 
                 <div class="check-group">
                     <input type="checkbox" id="consentCheckbox">
-                    <label>🇬🇧 I agree to participate / 🇨🇳 我同意参与本研究</label>
+                    <label>I agree to participate</label>
                 </div>
                 
-                <button id="nextToTutorialBtn" class="btn-primary" style="width:100%; margin-top:20px;">📖 Next: Tutorial / 下一步：教程 →</button>
+                <button id="nextToTutorialBtn" class="btn-primary" style="width:100%; margin-top:20px;">📖 Next: Tutorial →</button>
             </div>
         `;
         document.body.appendChild(modal);
         
         document.getElementById('nextToTutorialBtn').onclick = async () => {
             const subjectId = document.getElementById('consentSubjectId').value.trim();
+            const age = document.getElementById('participantAge').value.trim();
+            const gender = document.getElementById('participantGender').value;
+            const nativeEnglish = document.getElementById('nativeEnglish').value;
+            const seenMovie = document.getElementById('seenMovie').value;
             const consented = document.getElementById('consentCheckbox').checked;
-            if (!subjectId) { alert('Please enter participant ID / 请输入被试ID'); return; }
-            if (!consented) { alert('Please provide consent / 请勾选知情同意'); return; }
+            
+            if (!subjectId) { alert('Please enter participant ID'); return; }
+            if (!age) { alert('Please enter your age'); return; }
+            if (!gender) { alert('Please select your gender'); return; }
+            if (!nativeEnglish) { alert('Please select if you are a native English speaker'); return; }
+            if (!seenMovie) { alert('Please select if you have watched Back to the Future'); return; }
+            if (!consented) { alert('Please provide consent'); return; }
+            
             currentSubjectId = subjectId;
+            
+            window.participantInfo = {
+                age: age,
+                gender: gender,
+                nativeEnglish: nativeEnglish,
+                seenMovie: seenMovie
+            };
+            
             modal.remove();
             
             await loadVideoList();
@@ -819,27 +866,27 @@
         modal.className = 'modal-overlay';
         modal.innerHTML = `
             <div class="modal-card">
-                <h2>📖 Rating Tutorial / 评分教程</h2>
+                <h2>📖 Rating Tutorial</h2>
                 
                 <div class="tutorial-step">
-                    <div style="font-weight:bold; color:#a29bfe;">😊 Valence / 情绪效价</div>
-                    <p>🇬🇧 How positive or negative is the clip?<br>🇨🇳 这个片段让你感觉积极/愉悦还是消极/难受？<br>📊 -5(Very negative) → 0(Neutral) → +5(Very positive)</p>
+                    <div style="font-weight:bold; color:#a29bfe;">😊 Valence</div>
+                    <p>How positive or negative is the clip?<br>📊 -5(Very negative) → 0(Neutral) → +5(Very positive)</p>
                 </div>
                 <div class="tutorial-step">
-                    <div style="font-weight:bold; color:#a29bfe;">⚡ Arousal / 情绪唤醒度</div>
-                    <p>🇬🇧 Intensity, tension, excitement<br>🇨🇳 情绪强度、紧张感或激动程度<br>📊 1(Calm) → 5(Extreme)</p>
+                    <div style="font-weight:bold; color:#a29bfe;">⚡ Arousal</div>
+                    <p>Intensity, tension, excitement<br>📊 1(Calm) → 5(Extreme)</p>
                 </div>
                 <div class="tutorial-step">
-                    <div style="font-weight:bold; color:#a29bfe;">🎯 Confidence / 评分置信度</div>
-                    <p>🇬🇧 How certain are you about your ratings?<br>🇨🇳 你对自己给出的评分有多大把握？<br>📊 1(Not confident) → 5(Very confident)</p>
+                    <div style="font-weight:bold; color:#a29bfe;">🎯 Confidence</div>
+                    <p>How certain are you about your ratings?<br>📊 1(Not confident) → 5(Very confident)</p>
                 </div>
                 
-                <h3>📝 Examples / 示例</h3>
-                <div class="example-box"><div class="example-title">🎬 Light & Humorous / 轻松幽默</div>Valence: <strong>+3</strong> &nbsp;|&nbsp; Arousal: <strong>2</strong> &nbsp;|&nbsp; Confidence: <strong>5</strong></div>
-                <div class="example-box"><div class="example-title">😨 Tense & Dangerous / 紧张危险</div>Valence: <strong>-4</strong> &nbsp;|&nbsp; Arousal: <strong>5</strong> &nbsp;|&nbsp; Confidence: <strong>5</strong></div>
-                <div class="example-box"><div class="example-title">😌 Warm & Calm / 温暖平静</div>Valence: <strong>+4</strong> &nbsp;|&nbsp; Arousal: <strong>2</strong> &nbsp;|&nbsp; Confidence: <strong>5</strong></div>
+                <h3>📝 Examples</h3>
+                <div class="example-box"><div class="example-title">🎬 Light & Humorous</div>Valence: <strong>+3</strong> &nbsp;|&nbsp; Arousal: <strong>2</strong> &nbsp;|&nbsp; Confidence: <strong>5</strong></div>
+                <div class="example-box"><div class="example-title">😨 Tense & Dangerous</div>Valence: <strong>-4</strong> &nbsp;|&nbsp; Arousal: <strong>5</strong> &nbsp;|&nbsp; Confidence: <strong>5</strong></div>
+                <div class="example-box"><div class="example-title">😌 Warm & Calm</div>Valence: <strong>+4</strong> &nbsp;|&nbsp; Arousal: <strong>2</strong> &nbsp;|&nbsp; Confidence: <strong>5</strong></div>
                 
-                <button id="startTaskBtn" class="btn-primary" style="width:100%; margin-top:20px;">✅ Start Rating Task / 开始正式评分</button>
+                <button id="startTaskBtn" class="btn-primary" style="width:100%; margin-top:20px;">✅ Start Rating Task</button>
             </div>
         `;
         document.body.appendChild(modal);
@@ -853,7 +900,7 @@
     function startMainTask() {
         const hasPrev = loadFromLocal();
         if (hasPrev && ratingsData.length) {
-            const confirmResume = confirm(`🇬🇧 Previous progress detected (${ratingsData.length}/${TOTAL_CLIPS} clips completed). Resume?\n🇨🇳 检测到之前的进度（已完成 ${ratingsData.length}/${TOTAL_CLIPS} 段），是否继续？`);
+            const confirmResume = confirm(`Previous progress detected (${ratingsData.length}/${TOTAL_CLIPS} clips completed). Resume?`);
             if (!confirmResume) {
                 ratingsData = [];
                 currentIndex = 0;
@@ -874,7 +921,6 @@
         exportBtn.onclick = manualExport;
     }
     
-    // 启动
     showConsentAndTutorial();
 </script>
 </body>
